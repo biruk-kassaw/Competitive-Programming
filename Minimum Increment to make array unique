@@ -1,0 +1,12 @@
+class Solution:
+    def minIncrementForUnique(self, nums: List[int]) -> int:
+        max_val = max(nums)
+        count = collections.Counter(nums)
+        taken = []
+        moves = 0
+        for i in range(max_val + len(nums)):
+            if count[i] >= 2:
+                taken.extend([i]*(count[i]-1))
+            elif count[i] == 0 and taken:
+                moves += i - taken.pop()
+        return moves
