@@ -1,0 +1,25 @@
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        # use two pointers 1 to find 0s and the other to find nums
+        finder_0 = 0
+        finder_nums = 1
+        
+        while finder_nums < len(nums):
+            
+            if nums[finder_0] == 0 and nums[finder_nums] != 0:
+                temp = nums[finder_0]
+                nums[finder_0] = nums[finder_nums]
+                nums[finder_nums] = temp
+                finder_0 += 1
+                finder_nums += 1
+            
+            elif nums[finder_0] == 0 and nums[finder_nums] == 0:
+                finder_nums += 1
+
+            else:
+                finder_0 += 1
+                finder_nums += 1
+                
