@@ -1,0 +1,17 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        dic = Counter(s)
+        l = -1
+        sub = set()
+        ans = []
+        for i in range(len(s)):
+            if dic[s[i]] > 0:
+                if s[i] not in sub:
+                    sub.add(s[i])
+                dic[s[i]] -= 1
+            if dic[s[i]] == 0:
+                sub.remove(s[i])
+            if len(sub) == 0:
+                ans.append(i-l)
+                l = i
+        return ans
