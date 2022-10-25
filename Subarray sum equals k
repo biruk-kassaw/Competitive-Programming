@@ -1,0 +1,14 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        prefix = {0:1}
+        total = 0
+        result = 0
+        for i in range(len(nums)):
+            total += nums[i]
+            if total - k in prefix:
+                result += prefix[total-k]
+            if total in prefix:
+                prefix[total] += 1
+            else:
+                prefix[total] = 1
+        return result
