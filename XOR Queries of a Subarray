@@ -1,0 +1,14 @@
+class Solution:
+    def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:
+        prefix  = [0] 
+        for n in arr:
+            prefix.append(prefix[-1] ^ n)
+        
+        output = []
+        for query in queries:
+            
+            low,high = query
+            
+            output.append(prefix[low] ^ prefix[high+1])
+        
+        return output
