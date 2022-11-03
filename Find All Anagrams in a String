@@ -1,0 +1,36 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        p_dic = {}
+        s_dic = {}
+        if len(p) > len(s):
+            return []
+        
+        for i in range(len(p)):
+            if p[i] in p_dic:
+                p_dic[p[i]] += 1
+            else:
+                p_dic[p[i]] = 1
+                
+            if s[i] in s_dic:
+                s_dic[s[i]] += 1
+            else:
+                s_dic[s[i]] = 1
+        start = 0
+        end = len(p)
+        ans = []
+        if p_dic == s_dic:
+                ans.append(start)
+                
+        while end < len(s):
+            if s_dic[s[start]] > 1:
+                s_dic[s[start]] -= 1
+            else:
+                del s_dic[s[start]]
+                
+            s_dic[s[end]] = 1 if s[end] not in s_dic else s_dic[s[end]] + 1
+            # print(s_dic)
+            if p_dic == s_dic:
+                ans.append(start + 1)
+            start += 1
+            end += 1
+        return ans
