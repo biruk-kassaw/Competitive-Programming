@@ -1,0 +1,24 @@
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        fliped = False
+        start, end, ans = 0,0,0
+        
+        while end < len(nums):
+            if nums[end] == 0 and fliped == False:
+                f_at = end 
+                fliped = True
+                if end == len(nums)-1:
+                    ans = max(ans,end-start)
+                    
+            elif nums[end] == 0 and fliped == True:
+                ans = max(ans,end-start-1)
+                start = f_at + 1
+                f_at = end
+                
+            else: 
+                if end == len(nums) -1:
+                    ans = max(ans,(end-start))
+            end += 1
+            
+        return ans
+    
