@@ -1,0 +1,30 @@
+class Solution:
+    def calculate(self, s: str) -> int:
+        stack, num, i, sign = [], 0, 0, '+'
+        cur_op = None
+        
+        while i < len(s):
+            if s[i] == ' ':
+                i += 1
+                continue
+            while i < len(s) and s[i].isdigit():
+                num = num*10 + int(s[i])
+                i += 1
+            if cur_op is not None:
+                prev = stack.pop()
+                num = abs(int(prev*num if cur_op == '*' else prev/num))
+                cur_op = None
+
+            if i < len(s):
+                if s[i] in '+-':
+                    stack.append(num if sign == '+' else -num)
+                    num, sign = 0, s[i]
+                
+                elif s[i] in '*/':
+                    stack.append(num if sign == '+' else -num)
+                    num, cur_op = 0, s[i]
+
+            i += 1
+
+        stack.append(num if sign == '+' else -num)  # remaining number
+        return sum(stack)
