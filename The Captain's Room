@@ -1,0 +1,11 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+from collections import Counter
+k = int(input())
+
+room_list = input()
+room_list = room_list.split(" ")
+
+counter = Counter(room_list)
+for room in counter:
+    if counter[room] != k:
+        print(room)
