@@ -1,0 +1,11 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+count = int(input())
+word_counter = {}
+
+for i in range(count):
+    word = input()
+    word_counter[word] = word_counter.get(word,0) + 1
+print(len(word_counter))
+
+for word in word_counter:
+    print(word_counter[word],end=" ")
