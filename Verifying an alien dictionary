@@ -1,0 +1,39 @@
+class Solution:
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
+        left = 0
+        right = 1
+        alphabet = {}
+        for i in range(len(order)):
+            alphabet[order[i]] = i
+            
+        while right < len(words):
+            if not self.isSorted(words[left], words[right], alphabet):
+                return False
+            left += 1
+            right += 1
+        return True
+    
+    def isSorted(self, word1, word2, alphabet):
+        for char in range(len(word1)):
+            
+            if char < min(len(word1), len(word2))-1:
+                
+                if alphabet[word1[char]] < alphabet[word2[char]]:
+                    return True
+                elif alphabet[word1[char]] == alphabet[word2[char]]:
+                    continue
+                else:
+                    return False
+            
+            else:
+                if alphabet[word1[char]] == alphabet[word2[char]]:
+                    if len(word1) <= len(word2):
+                        return True
+                    else:
+                        return False
+                elif alphabet[word1[char]] < alphabet[word2[char]]:
+                    return True
+                else:
+                    return False
+            
+            
