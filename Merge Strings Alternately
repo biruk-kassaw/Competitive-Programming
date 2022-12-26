@@ -1,0 +1,24 @@
+class Solution:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        turn = 1
+        pt_1 = 0
+        pt_2 = 0
+        combined = []
+        while pt_1 < len(word1) and pt_2 < len(word2):
+            if turn == 1:
+                combined.append(word1[pt_1])
+                pt_1 += 1
+                turn = 0
+            else:
+                combined.append(word2[pt_2])
+                pt_2 += 1
+                turn = 1
+        while pt_1 < len(word1):
+            combined.append(word1[pt_1])
+            pt_1 += 1
+            
+        while pt_2 < len(word2):
+            combined.append(word2[pt_2])
+            pt_2 += 1
+            
+        return "".join(combined)
