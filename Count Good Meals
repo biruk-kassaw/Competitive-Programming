@@ -1,0 +1,24 @@
+class Solution:
+    def countPairs(self, deliciousness: List[int]) -> int:
+        powers_of_two = [1]
+        number = 2
+        ans = 0
+        while number < 2**21 + 1:
+            powers_of_two.append(number)
+            number *= 2
+            
+        numbers = Counter(deliciousness)
+        # print(powers_of_two)
+        for number in numbers:
+            for power_of_two in powers_of_two:
+                if power_of_two - number in numbers:
+                    n = numbers[number] 
+                    m = numbers[power_of_two - number]
+                    if power_of_two - number == number:
+                        ans += n*(n-1)//2
+                    else:
+                        ans += n * m
+            numbers[number] = 0
+            
+            
+        return ans % (10**9 +7)
