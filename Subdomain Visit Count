@@ -1,0 +1,33 @@
+class Solution:
+    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        counter = {}
+        ans = []
+        for domain in cpdomains:
+            count = 0
+            subdomains = []
+            temp = ""
+            for char in domain:
+                if char == " ":
+                    count = int(temp)
+                    temp = ""
+                    continue
+                elif char == ".":
+                    subdomains.append(temp)
+                    temp = ""
+                else:
+                    temp += char
+            subdomains.append(temp)
+            
+            if len(subdomains) == 3:
+                counter[subdomains[2]] = counter.get(subdomains[2], 0) + count
+                second_domain = subdomains[1]+"."+subdomains[2]
+                counter[second_domain] = counter.get(second_domain, 0) + count
+                third_domain = f"{subdomains[0]}.{subdomains[1]}.{subdomains[2]}"
+                counter[third_domain] = counter.get(third_domain, 0) + count
+            else:
+                counter[subdomains[1]] = counter.get(subdomains[1], 0) + count
+                second_domain = f"{subdomains[0]}.{subdomains[1]}"
+                counter[second_domain] = counter.get(second_domain, 0) + count
+        for count in counter:
+            ans.append(str(counter[count]) + " " + count)
+        return ans
