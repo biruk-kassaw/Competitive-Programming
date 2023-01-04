@@ -1,0 +1,25 @@
+n = int(input())
+
+for i in range(n):
+    ab = input().split()
+    a = ab[0]
+    b = ab[1]
+
+    if a[-1] == b[-1]:
+        if len(a) > len(b):
+            if a[-1] == "S":
+                print("<")
+            else:
+                print(">")
+        elif len(a) == len(b):
+            print("=")
+        else:
+            if a[-1] == "S":
+                print(">")
+            else:
+                print("<")
+    else:
+        if a[-1] < b[-1]:
+            print(">")
+        else:
+            print("<")
