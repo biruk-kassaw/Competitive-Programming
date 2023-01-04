@@ -1,0 +1,28 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+n_and_m = input().split()
+n = int(n_and_m[0])
+m = int(n_and_m[1])
+
+A = []
+for i in range(n):
+    A.append(input())
+B = []
+for i in range(m):
+    B.append(input())
+
+counter = {}    
+for i in range(len(A)):
+    if A[i] in counter:
+        counter[A[i]].append(i)
+    else:
+        counter[A[i]] = [i]
+for word in B:
+    if word in counter:
+        temp = ""
+        for i in counter[word]:
+            temp += str(i+1) + " "
+        print(temp)
+        
+    else:
+        print(-1)
