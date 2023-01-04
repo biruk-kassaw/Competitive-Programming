@@ -1,0 +1,21 @@
+n = int(input())
+for i in range(n):
+    length = int(input())
+    numbers = input().split()
+    word = input()
+
+    mapper = {}
+    yes = True
+    if len(word) != len(numbers):
+        print("NO")
+        continue
+    for j in range(len(numbers)):
+        if numbers[j] in mapper:
+            if mapper[numbers[j]] != word[j]:
+                print("NO")
+                yes = False
+                break
+        else:
+            mapper[numbers[j]] = word[j]
+    if yes:
+        print("YES")
