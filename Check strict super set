@@ -1,0 +1,19 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+A = set(input().split())
+
+n = int(input())
+
+sets = []
+
+ans = True
+
+for i in range(n):
+    sets.append(set(input().split()))
+for a_set in sets:
+    if len(a_set) >= len(A):
+        ans = False
+    else:
+        for element in a_set:
+            if element not in A:
+                ans = False
+print(ans)
