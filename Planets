@@ -1,0 +1,21 @@
+from collections import Counter
+
+n = int(input())
+for _ in range(n):
+    
+    k = int(input().split()[1])
+    planets = input().split()
+    counter  = Counter(planets)
+    ans = 0
+    
+    destroyed = set()
+    for planet in counter:
+        if counter[planet] > k and planet not in destroyed:
+            ans += k
+            destroyed.add(planet)
+        else:
+            if planet not in destroyed:
+                ans += counter[planet]
+                destroyed.add(planet)
+    print(ans)
+            
