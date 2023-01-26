@@ -1,0 +1,53 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows = {}
+        cols = {}
+        
+        quarter = {}
+                
+        
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+#                 check its row
+                if board[i][j] != ".":
+        
+                    if i in rows:
+                        if board[i][j] in rows[i]:
+                            return False
+                        else:
+                            temp = rows[i]
+                            temp.add(board[i][j])
+                    else:
+                        rows[i] = set(board[i][j])
+
+
+    #                 check its col
+                    if j in cols:
+                        if board[i][j] in cols[j]:
+                            return False
+                        else:
+                            temp = cols[j]
+                            temp.add(board[i][j])
+                    else:
+                        cols[j] = set(board[i][j])
+
+
+
+    #                 check its quarter
+        
+                    key = (i//3, j//3)
+            
+                    if key in quarter:
+                        if board[i][j] in quarter[key]:
+                            return False
+                        else:
+                            temp = quarter[key]
+                            temp.add(board[i][j])
+                    else:
+                        quarter[key] = set(board[i][j])
+                    
+        return True
+                
+                
+            
+        
