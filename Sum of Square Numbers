@@ -1,0 +1,17 @@
+class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+        seen = set()
+        found = False
+        if c == 2:
+            return True
+        largest = int(math.sqrt(c)) + 2
+        smallest = 0
+        
+        while smallest <= largest:
+            if (smallest * smallest) + (largest * largest) < c:
+                smallest += 1
+            elif (smallest * smallest) + (largest * largest) > c:
+                largest -= 1
+            else:
+                return True
+        return False
