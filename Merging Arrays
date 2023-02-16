@@ -1,0 +1,31 @@
+lengths = input()
+ 
+first = input().split()
+second = input().split()
+ 
+res = []
+ 
+first = [int(i) for i in first]
+second = [int(i) for i in second]
+ 
+first_i = 0
+second_i = 0
+ 
+while first_i < len(first) and second_i < len(second):
+    if first[first_i] < second[second_i]:
+        res.append(first[first_i])
+        first_i += 1
+    else:
+        res.append(second[second_i])
+        second_i += 1
+        
+while first_i < len(first):
+    res.append(first[first_i])
+    first_i += 1
+ 
+while second_i < len(second):
+    res.append(second[second_i])
+    second_i += 1
+    
+for i in res:
+    print(i,end=" ")
