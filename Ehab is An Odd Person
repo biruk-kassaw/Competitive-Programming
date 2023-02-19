@@ -1,0 +1,13 @@
+n = int(input())
+nums = [int(i) for i in input().split()]
+odd = False
+even = False
+for i in range(len(nums)):
+    if nums[i] % 2 == 0:
+        even = True
+    else:
+        odd = True
+if even and odd:
+    nums.sort()
+
+print(*nums)
