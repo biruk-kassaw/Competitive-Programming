@@ -5,7 +5,6 @@ class NumArray:
         self.prefixsum = [0]
         for i in range(len(nums)):
             self.prefixsum.append(self.nums[i] + self.prefixsum[i])
-        print(self.prefixsum)
 
     def sumRange(self, left: int, right: int) -> int:
         return self.prefixsum[right + 1] - self.prefixsum[left]
