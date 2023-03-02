@@ -9,10 +9,10 @@ class Solution:
             positions[start] += passengers
             positions[end] -= passengers
             
-        prefix = [0]   
-        for i in range(1,len(positions)):
-            prefix.append(prefix[i-1] + positions[i-1])
-            if prefix[i] > capacity:
+        running_sum = 0
+        for i in range(len(positions)):
+            running_sum += positions[i]
+            if running_sum > capacity:
                 return False
             
         return True
