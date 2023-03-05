@@ -1,6 +1,6 @@
 class Solution:
     def maxSumRangeQuery(self, nums: List[int], requests: List[List[int]]) -> int:
-        prefix = [0] * ((10**5) + 1)
+        prefix = [0] * (len(nums) + 1)
         for request in requests:
             prefix[request[0]] += 1
             prefix[request[1] + 1] -= 1
