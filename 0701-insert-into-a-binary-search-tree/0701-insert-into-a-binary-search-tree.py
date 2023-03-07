@@ -14,7 +14,7 @@ class Solution:
                     root.left = TreeNode(val)
                     return 
                 helper(root.left)
-            if root.val < val:
+            else:
                 if not root.right:
                     root.right = TreeNode(val)
                     return
