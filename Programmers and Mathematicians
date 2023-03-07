@@ -1,0 +1,25 @@
+
+def check_group(mid,programmers, mathematicians):
+    if mid <= min(programmers, mathematicians) and (programmers + mathematicians)>= 4 * mid:
+        return True
+    else:
+        return False
+
+test_cases = int(input())
+for _ in range(test_cases):
+    temp = input().split()
+    programmers = int(temp[0])
+    mathematicians = int(temp[1])
+    left = 0
+    right = min(programmers,mathematicians)
+
+    max_group = 0
+    while left <= right:
+        mid = (left + right)//2
+        if check_group(mid, programmers, mathematicians) and not check_group(mid + 1,programmers, mathematicians):
+            print(mid)
+            break
+        elif check_group(mid,programmers, mathematicians):
+            left = mid + 1
+        else:
+            right = mid - 1
