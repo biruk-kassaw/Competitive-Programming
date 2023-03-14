@@ -15,6 +15,7 @@ class Solution:
             self.count += 1
             if self.count == k:
                 self.val =  root.val
+                return
             helper(root.right,k)
         helper(root,k)
         return self.val
