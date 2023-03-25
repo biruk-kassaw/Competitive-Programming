@@ -13,15 +13,10 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
         second_part = slow.next
-        slow.next = None
         
-        prev = None
-        cur = second_part
-        while cur:
-            temp = cur.next
-            cur.next = prev
-            prev = cur
-            cur = temp
+        cur, prev = slow, None
+        while cur:       
+            cur.next, prev, cur = prev, cur, cur.next
             
         while head:
             ans = max(ans, prev.val + head.val)
