@@ -1,19 +1,11 @@
 class Solution:
     def hasAlternatingBits(self, n: int) -> bool:
-        isOn = n & 1
-        n >>= 1
-        
-        while n > 0:
-            last = n & 1
-            if isOn:
-                if last:
-                    return False
-                else:
-                    isOn = False
-            else:
-                if last:
-                    isOn = True
-                else:
-                    return False
-            n >>= 1
+        next_n = n//2
+        rem = n % 2
+        while next_n > 0:
+            if next_n % 2 == rem:
+                return False
+            rem = next_n % 2
+            next_n = next_n//2
+            
         return True
