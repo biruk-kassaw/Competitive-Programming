@@ -2,6 +2,8 @@ class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
         ans = []
         n = len(s)
+        if n > 12:
+            return []
         def backtrack(s, arr):
             len_arr = sum([len(i) for i in arr])
             if len(arr) == 4 and len_arr == n:
