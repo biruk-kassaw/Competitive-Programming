@@ -6,6 +6,13 @@ class Solution:
             else:
                 return gcd(b, a % b)
         
-        nums.sort()
-        return gcd(nums[-1], nums[0])
+        _min = nums[0]
+        _max = nums[0]
+        for num in nums:
+            if num < _min:
+                _min = num
+            if num > _max:
+                _max = num
+                
+        return gcd(_min, _max)
         
