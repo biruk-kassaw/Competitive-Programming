@@ -1,0 +1,13 @@
+test_cases = int(input())
+for _ in range(test_cases):
+    num = int(input())
+    _and = 1
+    while _and & num <= 0:
+        _and <<= 1
+    if len(bin(num)) > len(bin(_and)):
+        print(_and)
+        continue
+    xor = 1
+    while xor ^ num <= 0:
+        xor <<= 1
+    print(_and | xor)
