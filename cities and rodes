@@ -1,0 +1,10 @@
+n = int(input())
+
+graph = [list(map(int, input().split())) for _ in range(n)]
+
+rodes = 0
+for i in range(n):
+    for j in range(n):
+        if graph[i][j] == 1:
+            rodes += 1
+print(rodes//2)
