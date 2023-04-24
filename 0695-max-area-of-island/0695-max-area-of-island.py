@@ -8,19 +8,15 @@ class Solution:
         max_area = [0]
         visited = set()
         
-        def dfs(count, row, col):
-            if not inbound(row, col) or grid[row][col] == 0 or (row, col) in visited:
-                return
-            
-            count += 1
+        def dfs(row, col):
+                        
             visited.add((row, col))
-           
-           
+            
             for dir_r, dir_c in directions:
                 new_row = dir_r + row
                 new_col = dir_c + col
-                
-                dfs(count, new_row, new_col)
+                if not (not inbound(new_row, new_col) or grid[new_row][new_col] == 0 or (new_row, new_col) in visited):
+                    dfs(new_row, new_col)
         
         for i in range(len(grid)):
             for j in range(len(grid[0])):
@@ -28,7 +24,7 @@ class Solution:
                 if grid[i][j] == 1 and (i, j) not in visited:
                     
                     count=len(visited)
-                    dfs(0, i, j)
+                    dfs(i, j)
                     max_area[0]=max(max_area[0],len(visited)-count)
                     
         return max_area[0]
