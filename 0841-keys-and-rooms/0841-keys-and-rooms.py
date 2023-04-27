@@ -13,5 +13,4 @@ class Solution:
                         continue
                     visited.add(j)
                     queue.append(rooms[j])
-        print(visited)
         return len(visited) == len(rooms)
