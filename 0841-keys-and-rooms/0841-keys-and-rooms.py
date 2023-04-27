@@ -6,11 +6,11 @@ class Solution:
         while queue:
             n = len(queue)
             
-            for i in range(n):
-                room = queue.popleft()
-                for j in room:
-                    if j in visited:
-                        continue
-                    visited.add(j)
-                    queue.append(rooms[j])
+            room = queue.popleft()
+            for j in room:
+                if j in visited:
+                    continue
+                visited.add(j)
+                queue.append(rooms[j])
+                
         return len(visited) == len(rooms)
