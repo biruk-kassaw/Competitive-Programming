@@ -11,7 +11,6 @@ class Solution:
             if incomings[i] == 0:
                 q.append(i)
         ans = []    
-        print(graph)
         while q:
             cur = q.pop()
             ans.append(cur)
