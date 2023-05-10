@@ -19,12 +19,10 @@ class Solution:
             colors[node] = 2
             return False
         colors = [0]*len(graph)
-        ans = set()
+        ans = []
         for i in range(len(graph)):
             if not dfs(i):
-                ans.add(i)
-                
-        ans = list(ans)
+                ans.append(i)
         ans.sort()
         
         return ans
