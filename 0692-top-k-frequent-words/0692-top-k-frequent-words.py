@@ -9,8 +9,6 @@ class Solution:
         
         ans = []
         for _ in range(k):
-            ans.append(heappop(word_heap))
-        
-        ans = [word[1] for word in ans]
-        
+            ans.append(heappop(word_heap)[1])
+                
         return ans
