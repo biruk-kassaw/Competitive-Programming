@@ -1,39 +1,35 @@
 class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
-
-        # edge cases
+        
         if n <= 2:
             return [i for i in range(n)]
+        
+        graph = defaultdict(set)
+        incomings = [0] * n
+        
+        for a, b in edges:
+            graph[a].add(b)
+            graph[b].add(a)
+            incomings[a] += 1
+            incomings[b] += 1
+            
+        q = deque()
+        for i, incoming in enumerate(incomings):
+            if incoming == 1:
+                q.append(i)
+                
+        visited = set()
+        remaining = n
+        while remaining > 2:
 
-        # Build the graph with the adjacency list
-        neighbors = [set() for i in range(n)]
-        for start, end in edges:
-            neighbors[start].add(end)
-            neighbors[end].add(start)
+            for _ in range(len(q)):
+                cur = q.popleft()
+                remaining -= 1
+                visited.add(cur)
+                for child in graph[cur]:
+                    if child not in visited:
+                        incomings[child] -= 1
+                        if incomings[child] == 1:
+                            q.append(child)
 
-        # Initialize the first layer of leaves
-        leaves = []
-        for i in range(n):
-            if len(neighbors[i]) == 1:
-                leaves.append(i)
-
-        # Trim the leaves until reaching the centroids
-        remaining_nodes = n
-        while remaining_nodes > 2:
-            remaining_nodes -= len(leaves)
-            new_leaves = []
-            # remove the current leaves along with the edges
-            while leaves:
-                leaf = leaves.pop()
-                # the only neighbor left for the leaf node
-                neighbor = neighbors[leaf].pop()
-                # remove the only edge left
-                neighbors[neighbor].remove(leaf)
-                if len(neighbors[neighbor]) == 1:
-                    new_leaves.append(neighbor)
-
-            # prepare for the next round
-            leaves = new_leaves
-
-        # The remaining nodes are the centroids of the graph
-        return leaves
+        return q
