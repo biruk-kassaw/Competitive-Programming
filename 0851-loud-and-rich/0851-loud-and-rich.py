@@ -3,28 +3,19 @@ class Solution:
         graph = defaultdict(list)
         for a, b in richer:
             graph[b].append(a)
-        visited = {}
-        def dfs(node, minVal):
-            if node in visited:
-                return visited[node]
+            
+        def dfs(node):
+            if not ans[node]:
+                ans[node] = node
+                for child in graph[node]:
+                    cur = dfs(child)
+                    if quiet[cur] < quiet[ans[node]]:
+                        ans[node] = cur
+            return ans[node]
         
-            for child in graph[node]:
-                if child in visited:
-                    minVal = min (minVal, visited[child])
-                else:
-                    curMin = dfs(child, quiet[child])
-                    visited[child] = curMin
-                    minVal = min(minVal, curMin)
-                    
-            return minVal
-        
-        ans = []
-        dic = {}
+        ans = [None] * len(quiet)
         
         for i in range(len(quiet)):
-            dic[quiet[i]] = i
-        
-        for i in range(len(quiet)):
-            ans.append(dic[dfs(i, quiet[i])])
+            dfs(i)
             
         return ans
