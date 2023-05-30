@@ -1,0 +1,38 @@
+class Solution:
+    def longestCycle(self, edges: List[int]) -> int:
+        graph = defaultdict(list)
+        incoming = [0]*(len(edges))
+        for i, num in enumerate(edges):
+            if num != -1:
+                graph[i].append(num)
+                incoming[num] += 1
+        q = deque()
+        for i in range(len(edges)):
+            if incoming[i] == 0:
+                q.append(i)
+                
+        
+        while q:
+            cur = q.popleft()
+            
+            for child in graph[cur]:
+                incoming[child] -= 1
+                if incoming[child] == 0:
+                    q.append(child)
+                
+        ans = -1
+        visited = set()
+        for i, count in enumerate(incoming):
+            if count > 0 and i not in visited:
+                q = deque([i])
+                dist = 0
+                while q:
+                    cur = q.popleft()
+                    dist += 1
+                    for child in graph[cur]:
+                        if child not in visited:
+                            visited.add(child)
+                            q.append(child)
+                ans = max(ans, dist-1)
+        
+        return ans
