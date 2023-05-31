@@ -1,0 +1,16 @@
+class Solution:
+    def getMaximumGenerated(self, n: int) -> int:
+        memo = {0:0, 1:1}
+        def dfs(n):
+            if n not in memo:
+                if n % 2 == 0:
+                    cur = dfs(n//2)
+                    memo[n] = cur
+                else:
+                    cur =  dfs((n-1)//2) + dfs(((n-1)//2)+1)
+                    memo[n] = cur
+            return memo[n]
+        maximum = 0    
+        for i in range(n+1):
+            maximum = max(dfs(i), maximum)
+        return maximum
