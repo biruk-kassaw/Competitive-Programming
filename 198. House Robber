@@ -1,0 +1,23 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        memo = {}
+        def dfs(idx):
+            if idx not in memo:
+                if idx == len(nums) - 1:
+                    return nums[idx]
+
+                if idx >= len(nums):
+                    return 0
+                max_ = nums[idx]
+                for i in range(idx + 2, len(nums)):
+                    cur = dfs(i) + nums[idx]
+                    max_ = max(max_, cur)
+                memo[idx] = max_
+                return max_
+            return memo[idx]
+        
+        res = 0
+        for i in range(len(nums)):
+            res = max(res, dfs(i))
+            
+        return res
