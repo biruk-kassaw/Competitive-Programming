@@ -8,6 +8,7 @@ class Solution:
             for char in wordC:
                 if char not in charSet or wordC[char] > charSet[char]:
                     isGood = False
+                    break
             if isGood:
                 length += len(word)
         return length
